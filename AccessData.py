@@ -8,8 +8,8 @@ import math
 import random
 import csv
 
-numberOfAccess = 200
-numberOfUsers = 20000
+numberOfAccess = 20000000
+numberOfUsers = 200000
 maxTime = 1000000
 accessTypeOptions = ['viewed', 'left a note', 'sent a message']
 
@@ -23,6 +23,8 @@ def accessCVS():
         myPageWriter = csv.DictWriter(myPage, fieldnames=myPageFieldNames)
         # create random users
         for accessNumber in range(numberOfAccess) :
+            if (accessNumber+1) % 100 == 0:
+                print("\rRow "+str(accessNumber+1), end =" ")
             myPageWriter.writerow(generateAccessRow(accessNumber+1)) # add 1 to start enumeration at 1
 
 

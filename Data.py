@@ -5,7 +5,7 @@ import pandas
 import names
 
 
-numberOfUsers = 10
+numberOfUsers = 200000
 # both are initialized later
 nationalityOptions = []
 hobbyOptions = []
@@ -19,7 +19,9 @@ def generateMyPageCSV():
         myPageFieldNames = ['ID', 'Name', 'Nationality', 'CountryCode', 'Hobby']
         myPageWriter = csv.DictWriter(myPage, fieldnames=myPageFieldNames)
         # create random users
-        for userNumber in range(numberOfUsers) :
+        for userNumber in range(numberOfUsers+1) :
+            if (userNumber+1) % 100 == 0:
+                print("\rRow "+str(userNumber+1), end =" ")
             myPageWriter.writerow(generateMyPage(userNumber+1)) # add 1 to start enumeration at 1
 
 
