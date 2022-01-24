@@ -25,7 +25,7 @@ def generateMyPageCSV():
 
 # generate a single users page
 def generateMyPage(id):
-    formatStr = "{0:<10}" # use this string to set the format for the strings, this sets is to be 20 characters long I think
+    formatStr = "{0:<10}" # use this string to set the format for the strings, this sets is to be 10 characters long
     name = formatStr.format(names.get_full_name())
     countryCode = math.trunc(random.random() * len(nationalityOptions)) # gets a random integer that is an index to a nationality
     nationality = formatStr.format(nationalityOptions[countryCode])
