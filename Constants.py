@@ -1,4 +1,4 @@
-numberOfUsers = 10
+numberOfUsers = 200000
 numberOfFriends = 10
 dateRange = 10 # used for date of friendship (is between 1 and this number)
 numberOfAccess = 10

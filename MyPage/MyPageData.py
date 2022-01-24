@@ -11,12 +11,12 @@ def dataframeToValidArray(fileName, columnName):
     dataframe = pandas.read_csv(fileName)
     dataframe[columnName] = dataframe[columnName].astype('str')
     filteredDataFrame = dataframe[(dataframe[columnName].str.len() <= 20)]
-    return filteredDataFrame[columnName].array
+    return filteredDataFrame[columnName]
 
 # Hobby csv found at https://www.kaggle.com/muhadel/hobbies
 # Nationality csv found at https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/664133/CH_Nationality_List_20171130_v1.csv/preview
-nationalityOptions = dataframeToValidArray("MyPage/nationalities.csv", "Nationality")
-hobbyOptions = dataframeToValidArray("MyPage/hobbies.csv", "Hobby")
+nationalityOptions = dataframeToValidArray("MyPage/nationalities.csv", "Nationality").sample(50).array
+hobbyOptions = dataframeToValidArray("MyPage/hobbies.csv", "Hobby").array
 
 def generateMyPageCSV():
     # open/create myPage file
