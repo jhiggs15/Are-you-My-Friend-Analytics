@@ -33,7 +33,7 @@ def generateAccessRow(id):
     byWho = math.trunc(random.random() * numberOfUsers)
     whatPage = math.trunc(random.random() * numberOfUsers)
     while byWho == whatPage: # keep retrying until pages are different
-        math.trunc(random.random() * numberOfUsers)
+        whatPage = math.trunc(random.random() * numberOfUsers)
     typeOfAccess = formatStr.format(random.choice(accessTypeOptions))
     time = math.ceil(random.random() * maxTime)
     return {'ID': id, 'ByWho': byWho, 'WhatPage': whatPage, 'TypeOfAccess': typeOfAccess, 'AccessTime':time}
