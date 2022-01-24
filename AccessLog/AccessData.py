@@ -8,16 +8,15 @@ import math
 import random
 import csv
 
-numberOfAccess = 20000000
-numberOfUsers = 200000
-maxTime = 1000000
+from Constants import numberOfAccess, numberOfUsers, maxTime, DataOutput
+
 accessTypeOptions = ['viewed', 'left a note', 'sent a message']
 
 def accessCVS():
     # initialize random seed
     random.seed(100)
     # open/create myPage file
-    with open('accessLog.csv', 'w', newline='') as myPage :
+    with open(DataOutput + 'accessLog.csv', 'w', newline='') as myPage :
         # setup file writer
         myPageFieldNames = ['ID', 'ByWho', 'WhatPage', 'TypeOfAccess', 'AccessTime']
         myPageWriter = csv.DictWriter(myPage, fieldnames=myPageFieldNames)
@@ -30,12 +29,16 @@ def accessCVS():
 
 def generateAccessRow(id):
     formatStr = "{0:<20}" # use this string to set the format for the strings, this sets is to be 20 characters lon
-    byWho = math.trunc(random.random() * numberOfUsers)
-    whatPage = math.trunc(random.random() * numberOfUsers)
+    # byWho = math.trunc(random.random() * numberOfUsers)
+    byWho = random.randint(1, numberOfUsers)
+    # whatPage = math.trunc(random.random() * numberOfUsers)
+    whatPage = random.randint(1, numberOfUsers)
     while byWho == whatPage: # keep retrying until pages are different
-        whatPage = math.trunc(random.random() * numberOfUsers)
+        whatPage = random.randint(1, numberOfUsers)
     typeOfAccess = formatStr.format(random.choice(accessTypeOptions))
-    time = math.ceil(random.random() * maxTime)
+    # time = math.ceil(random.random() * maxTime)
+    time = random.randint(1, maxTime)
+
     return {'ID': id, 'ByWho': byWho, 'WhatPage': whatPage, 'TypeOfAccess': typeOfAccess, 'AccessTime':time}
 
 if __name__ == '__main__':
