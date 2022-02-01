@@ -19,6 +19,8 @@ nationalityOptions = dataframeToValidArray("MyPage/nationalities.csv", "National
 hobbyOptions = dataframeToValidArray("MyPage/hobbies.csv", "Hobby").array
 
 def generateMyPageCSV():
+    print("Generating MyPage Data...\n")
+
     # open/create myPage file
     with open(DataOutput + 'myPage.csv', 'w', newline='') as myPage :
         # setup file writer
@@ -26,6 +28,8 @@ def generateMyPageCSV():
         myPageWriter = csv.DictWriter(myPage, fieldnames=myPageFieldNames)
         # create random users
         for userNumber in range(numberOfUsers) :
+            if (userNumber+1) % 100 == 0:
+                print("\rPercent Complete "+str( ((userNumber+1) / numberOfUsers) * 100 ) + "%", end =" ")
             myPageWriter.writerow(generateMyPage(userNumber+1)) # add 1 to start enumeration at 1
 
 # generate a single users page

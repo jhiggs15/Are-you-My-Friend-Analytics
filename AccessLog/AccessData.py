@@ -14,6 +14,7 @@ accessTypeOptions = ['viewed', 'left a note', 'sent a message']
 
 def accessCVS():
     # initialize random seed
+    print("Generating AcessLog Data...\n")
     random.seed(100)
     # open/create myPage file
     with open(DataOutput + 'accessLog.csv', 'w', newline='') as myPage :
@@ -23,7 +24,7 @@ def accessCVS():
         # create random users
         for accessNumber in range(numberOfAccess) :
             if (accessNumber+1) % 100 == 0:
-                print("\rRow "+str(accessNumber+1), end =" ")
+                print("\rPercent Complete "+str( ((accessNumber+1) / numberOfAccess) * 100 ) + "%", end =" ")
             myPageWriter.writerow(generateAccessRow(accessNumber+1)) # add 1 to start enumeration at 1
 
 

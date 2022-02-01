@@ -41,12 +41,15 @@ def generateRandomFriendDescriptor():
 
 def generateFriendsCSV():
     # open/create myFriends file
+    print("Generating Friend Data...\n")
     with open(DataOutput +'friends.csv', 'w', newline='') as friend :
         # setup file writer
         friendFieldNames = ['FriendRel', 'PersonID', 'MyFriend', 'DateofFriendship', 'Desc']
         friendWriter = csv.DictWriter(friend, fieldnames=friendFieldNames)
         # create random users
         for relationshipNumber in range(numberOfFriends) :
+            if (relationshipNumber+1) % 100 == 0:
+                print("\rPercent Complete "+str( ((relationshipNumber+1) / numberOfFriends) * 100 ) + "%", end =" ")
             friendWriter.writerow(generateFriend(relationshipNumber + 1))
 
 def generateFriend(id):
